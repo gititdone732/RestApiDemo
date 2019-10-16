@@ -20,6 +20,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author Venkatesh
+ *
+ */
 @SpringBootApplication
 @EnableHystrixDashboard
 @EnableCircuitBreaker
@@ -27,10 +31,19 @@ public class DemoApplication {
 
 	
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	
+	/**
+	 * @return RestTemplate Bean
+	 * @throws KeyStoreException
+	 * @throws NoSuchAlgorithmException
+	 * @throws KeyManagementException
+	 */
 	@Bean
 	public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
 	    TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;

@@ -12,12 +12,21 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.example.demo.error.CustomException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+/**
+ * @author Venkatesh
+ *
+ */
 @Service
 public class RemoteApiServiceIvokation {
 
 	@Autowired
 	RestTemplate restTemplate;
 	
+	/**
+	 * @param pagenum
+	 * @param pagesize
+	 * @return ResponseEntity
+	 */
 	@HystrixCommand(fallbackMethod = "remoteEndPointNotWorking", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
 	})
@@ -33,6 +42,11 @@ public class RemoteApiServiceIvokation {
 		
 	}
 	
+	/**
+	 * @param pagenum
+	 * @param pagesize
+	 * @return ResponseEntity
+	 */
 	@SuppressWarnings("unused")
 	public ResponseEntity<?> remoteEndPointNotWorking(String pagenum,String pagesize) {
 		

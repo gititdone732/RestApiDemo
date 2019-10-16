@@ -20,8 +20,17 @@ import com.example.demo.DemoApplication;
 import com.example.demo.service.RemoteApiServiceIvokation;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
+/**
+ * @author Venkatesh
+ *
+ */
 @RestController
 public class LocalApi {
+	
 	
 	private static final Logger LOGGER=LoggerFactory.getLogger(LocalApi.class);
 	
@@ -31,6 +40,16 @@ public class LocalApi {
 	@Autowired
 	RemoteApiServiceIvokation service;
 	
+	/**
+	 * @param pagenum
+	 * @param pagesize
+	 * @return ResponseEntity
+	 */
+	@ApiOperation(value = "get list of products in JSON")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Successfully retrieved list"),
+	    @ApiResponse(code = 500, message = "Internal Server Error")
+	})
 	@RequestMapping(value="/restapi/{pagenum}/{pagesize}",produces=org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> callRemoteApi(@PathVariable("pagenum") String pagenum
 			,@PathVariable("pagesize") String pagesize){

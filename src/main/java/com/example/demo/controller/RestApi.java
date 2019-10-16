@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestApi {
 	
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping(value="/jsonobj",produces=org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
 	public Map<String,String> jsonObject(){
 		
